@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Home Page</title>
+    <style>
+        .profile-box {
+            background-color: white;
+            padding: 20px;
+            width: 320px;
+            margin: 30px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid goldenrod;
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 22px;
+            font-weight: bold;
+            color: goldenrod;
+            margin-top: 5px;
+        }
+    </style>
+</head>   
+<body>
+    <h1 lang="hi">
+        <span class="len">लेन</span><span class="den">देन</span>
+    </h1>
+
+    <nav>
+        <ul>
+            <li><a href="buy.html">Buy</a></li>
+            <li><a href="sell.html">Sell</a></li>
+        </ul>
+    </nav>
+
+    <div class="profile-box">
+        <img src="images/icon.png" alt="User Image" class="profile-img">
+        <h3>User Name</h3>
+        <div class="stats">
+            <div class="stat-item">
+                Items Bought
+                <span></span>
+            </div>
+            <div class="stat-item">
+                Items Sold
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        fetch('/api/user')
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector('h3').textContent = 'Username: ' + data.username;
+                document.querySelectorAll('.stat-item span')[0].textContent = data.bought || '0';
+                document.querySelectorAll('.stat-item span')[1].textContent = data.sold || '0';
+            })
+            .catch(err => {
+                document.querySelector('h3').textContent = 'Username: Guest';
+            });
+    </script>
+    
+</body>
+</html>

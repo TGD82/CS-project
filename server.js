@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const session = require('express-session');
 const User = require('./modeluser');
 
 const app = express();
@@ -13,6 +14,12 @@ mongoose.connect('mongodb+srv://goplanidhir:Dhir1000@cluster1.cj3xb2t.mongodb.ne
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+app.use(session({
+  secret: 'supersecretkey',
+  resave: false,
+  saveUninitialized: true
+}));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
@@ -22,7 +29,8 @@ app.post('/login', async (req, res) => {
   const user = await User.findOne({ username });
 
   if (user && user.password === password) {
-    res.send(`Welcome, ${user.username}!`);
+    req.session.user = { id: user._id, username: user.username };
+    res.sendFile(path.join(__dirname, 'public', 'buy.html'));
   } else {
     res.send('Invalid username or password');
   }
@@ -44,6 +52,14 @@ app.post('/register', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.send('Error registering user');
+  }
+});
+
+app.get('/api/user', (req, res) => {
+  if (req.session.user) {
+    res.json({ username: req.session.user.username });
+  } else {
+    res.status(401).json({ error: 'Not logged in' });
   }
 });
 

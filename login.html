@@ -7,17 +7,28 @@
   <title>Login</title>
 </head>
 <body>
-  <form action="/login" method="POST">
-    <h2>Login</h2>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required />
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required />
+  <h1 lang="hi">
+    <span class="len">लेन</span><span class="den">देन</span>
+  </h1>
 
-    <button type="submit">Login</button>
-    <p>Don't have an account? <a href="/register.html">Register here</a></p>
+  <div class="login-container">
+    <form action="/login" method="POST">
+      <h2>Login</h2>
 
-  </form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Login</button>
+
+      <div class="login-footer">
+        <p>Don't have an account? <a href="/register.html">Register here</a></p>
+      </div>
+    </form>
+  </div>
+
 </body>
 </html>
