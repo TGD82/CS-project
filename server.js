@@ -51,9 +51,7 @@ app.post('/register', async (req, res) => {
   const { username, password } = req.body;
   try {
     const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Username already exists!' });
-    }
+    if (existingUser) return res.status(400).json({ message: 'Username already exists!' });
     const newUser = new User({ username, password });
     await newUser.save();
     req.session.user = { id: newUser._id, username: newUser.username };
@@ -91,13 +89,15 @@ app.get('/api/user', async (req, res) => {
 });
 
 app.post('/sell', upload.single('image'), async (req, res) => {
-  if (!req.file || !req.body.price || !req.body.itemName) {
+  if (!req.file || !req.body.price || !req.body.itemName || !req.body.description || !req.body.category) {
     return res.status(400).send('Missing fields');
   }
   const imagePath = req.file.filename;
   const price = parseInt(req.body.price);
   const itemName = req.body.itemName;
-  const item = { username: req.session.user.username, imagePath, price, itemName };
+  const description = req.body.description;
+  const category = req.body.category;
+  const item = { username: req.session.user.username, imagePath, price, itemName, description, category };
   const result = await db.collection('items').insertOne(item);
   const fullItem = { ...item, _id: result.insertedId };
   await db.collection('users').updateOne(
@@ -131,7 +131,9 @@ app.post('/buy/:itemId', async (req, res) => {
   try {
     const item = await db.collection('items').findOne({ _id: itemId });
     if (!item) return res.status(404).send('Item not found');
-    await db.collection('items').deleteOne({ _id: itemId });
+    if (item.username === buyerUsername) return res.status(403).send('Cannot buy your own item');
+    const result = await db.collection('items').deleteOne({ _id: itemId });
+    if (result.deletedCount === 0) return res.status(400).send("Item already sold or doesn't exist.");
     await db.collection('users').updateOne(
       { username: item.username },
       { $pull: { selling: { _id: itemId } }, $inc: { sold: 1 } }
