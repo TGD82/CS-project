@@ -1,6 +1,7 @@
 body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-color: rgb(230, 230, 230);
+    background-color: #121212;
+    color: white;
     text-align: center;
     margin: 0;
 }
@@ -8,9 +9,9 @@ body {
 nav {
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: black;
     padding: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -31,15 +32,15 @@ nav li {
 nav a {
     text-decoration: none;
     font-weight: bold;
-    color: goldenrod;
+    color: white;
     padding: 5px 10px;
     transition: color 0.3s, background-color 0.3s;
     font-size: 24px;
 }
 
 nav a:hover {
-    color: white;
-    background-color: goldenrod;
+    color: black;
+    background-color: #ff9000;
     border-radius: 5px;
 }
 
@@ -49,13 +50,13 @@ h1 {
 
 .len {
     font-size: 125px;
-    color: goldenrod;
+    color: white;
     padding: 12px 0;
 }
 
 .den {
     font-size: 125px;
-    color: rgb(0, 0, 0);
+    color: #ff9000;
     padding: 2px;
 }
 
@@ -68,20 +69,20 @@ h1 {
 }
 
 .card {
-    background-color: white;
+    background-color: #1e1e1e;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
     padding: 20px;
     width: 300px;
     transition: transform 0.3s ease;
     text-align: left;
-    border: 1px solid #ddd;
+    border: 1px solid #333;
     overflow: hidden;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.1);
 }
 
 .card img {
@@ -94,18 +95,18 @@ h1 {
 .card h2 {
     font-size: 20px;
     margin: 10px 0;
-    color: goldenrod;
+    color: #ff9000;
 }
 
 .card p {
     font-size: 16px;
-    color: #555;
+    color: #ccc;
     line-height: 1.5;
 }
 
 .card button {
-    background-color: goldenrod;
-    color: white;
+    background-color: #ff9000;
+    color: black;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -117,21 +118,21 @@ h1 {
 }
 
 .card button:hover {
-    background-color: darkgoldenrod;
+    background-color: #e67e00;
 }
 
 .login-container {
     max-width: 400px;
     margin: 50px auto;
     padding: 30px;
-    background: white;
+    background: #1e1e1e;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
 .login-container h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #fff;
 }
 
 form {
@@ -143,19 +144,22 @@ form {
 form label {
     text-align: left;
     font-weight: bold;
+    color: #ccc;
     margin-bottom: 5px;
 }
 
 form input {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
     border-radius: 5px;
+    background: #2a2a2a;
+    color: white;
 }
 
 form button {
-    background-color: goldenrod;
-    color: white;
+    background-color: #ff9000;
+    color: black;
     font-weight: bold;
     font-size: 16px;
     padding: 10px;
@@ -166,16 +170,17 @@ form button {
 }
 
 form button:hover {
-    background-color: darkgoldenrod;
+    background-color: #e67e00;
 }
 
 .login-footer {
     margin-top: 10px;
     font-size: 14px;
+    color: #aaa;
 }
 
 .login-footer a {
-    color: purple;
+    color: #ff9000;
     text-decoration: none;
 }
 

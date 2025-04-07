@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="/css/style.css">
 <head>
-    <h1 lang="hi">
-        <span class="len">लेन</span><span class="den">देन</span>
-    </h1>
-</head>   
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sell Page</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="buy.html"> Buy</a></li>
-            <li><a href="userinfo.html">Profile</a></li>
-        </ul>
-    </nav>
+  <h1><span class="len">लेन</span><span class="den">देन</span></h1>
+
+  <nav>
+    <ul>
+      <li><a href="buy.html">Buy</a></li>
+      <li><a href="userinfo.html">Profile</a></li>
+    </ul>
+  </nav>
+
+  <div class="login-container">
+    <h2>Sell an Item</h2>
+    <form action="/sell" method="POST" enctype="multipart/form-data">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName" required />
+
+      <label for="image">Upload Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required />
+
+      <label for="price">Price (₹):</label>
+      <input type="number" id="price" name="price" min="0" step="1" required />
+
+      <button type="submit">Sell</button>
+    </form>
+    <p id="statusMsg"></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "1") {
+      document.getElementById("statusMsg").textContent = "Item uploaded successfully!";
+    }
+  </script>
 </body>
+</html>
