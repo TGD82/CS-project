@@ -10,7 +10,7 @@ const { MongoClient } = require('mongodb');
 const app = express();
 const port = 3000;
 
-mongoose.connect('mongodb+srv://goplanidhir:Dhir1000@cluster1.cj3xb2t.mongodb.net/loginApp?retryWrites=true&w=majority&appName=Cluster1')
+mongoose.connect('mongodb+srv://Dhir:Dhir0000@cluster0.wsrgvbz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((err) => console.log("❌ MongoDB connection error:", err));
 
@@ -152,3 +152,4 @@ app.post('/buy/:itemId', async (req, res) => {
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
 });
+
